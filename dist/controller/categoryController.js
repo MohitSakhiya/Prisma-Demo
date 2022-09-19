@@ -36,66 +36,49 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.Login = exports.Register = void 0;
+exports.categoryOnPost = exports.addCategory = void 0;
 var client_1 = require("@prisma/client");
 var prisma = new client_1.PrismaClient();
-var Register = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, firstName, lastName, email, password, alreadyExists, users, payload;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+var addCategory = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var category_name, category;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _a = req.body, firstName = _a.firstName, lastName = _a.lastName, email = _a.email, password = _a.password;
-                if (!(firstName && lastName && email && password))
-                    return [2 /*return*/, res.status(400).json({ message: 'All Input Field Required', success: false, data: {} })];
-                return [4 /*yield*/, prisma.user.findFirst({ where: { email: email } })];
-            case 1:
-                alreadyExists = _b.sent();
-                if (alreadyExists) {
-                    return [2 /*return*/, res.status(400).json({ message: 'User Already Register', success: false, data: {} })];
-                }
-                return [4 /*yield*/, prisma.user.create({
+                category_name = req.body.category_name;
+                if (!(category_name))
+                    return [2 /*return*/, res.status(400).json({ message: 'Category Name Required', success: false, data: {} })];
+                return [4 /*yield*/, prisma.category.create({
                         data: {
-                            firstName: firstName,
-                            lastName: lastName,
-                            email: email,
-                            password: password
+                            name: category_name
                         }
                     })];
-            case 2:
-                users = _b.sent();
-                payload = {
-                    firstname: users.firstName,
-                    lastname: users.lastName,
-                    email: users.email
-                };
-                return [2 /*return*/, res.status(200).json({ message: 'Register Success', success: true, data: { payload: payload } })];
+            case 1:
+                category = _a.sent();
+                return [2 /*return*/, res.status(200).json({ message: 'Category Add Successfully', success: true, data: { category: category } })];
         }
     });
 }); };
-exports.Register = Register;
-var Login = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, checkEmail;
+exports.addCategory = addCategory;
+var categoryOnPost = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, postId, categoryId, assignedBy, categoryOnPost;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _a = req.body, email = _a.email, password = _a.password;
-                if (!(email && password))
-                    return [2 /*return*/, res.status(400).json({ message: 'All Input Field Required', success: false, data: {} })];
-                return [4 /*yield*/, prisma.user.findFirst({ where: { email: email } })];
+                _a = req.body, postId = _a.postId, categoryId = _a.categoryId, assignedBy = _a.assignedBy;
+                if (!(postId && categoryId && assignedBy))
+                    return [2 /*return*/, res.status(400).json({ message: 'All Field Required', success: false, data: {} })];
+                return [4 /*yield*/, prisma.categoriesOnPosts.create({
+                        data: {
+                            postId: postId,
+                            categoryId: categoryId,
+                            assignedBy: assignedBy
+                        }
+                    })];
             case 1:
-                checkEmail = _b.sent();
-                if (!checkEmail) {
-                    return [2 /*return*/, res.status(200).json({ message: 'Wrong Email', success: false, data: {} })];
-                }
-                if (checkEmail.email === email && checkEmail.password === password) {
-                    return [2 /*return*/, res.status(200).json({ message: "Login Success", success: true, data: {} })];
-                }
-                else {
-                    return [2 /*return*/, res.status(400).json({ message: 'Please Check Credentials', success: false, data: {} })];
-                }
-                return [2 /*return*/];
+                categoryOnPost = _b.sent();
+                return [2 /*return*/, res.status(200).json({ message: 'Category On Post Add', success: true, data: { categoryOnPost: categoryOnPost } })];
         }
     });
 }); };
-exports.Login = Login;
-//# sourceMappingURL=userController.js.map
+exports.categoryOnPost = categoryOnPost;
+//# sourceMappingURL=categoryController.js.map
