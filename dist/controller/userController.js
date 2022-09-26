@@ -46,12 +46,18 @@ var Register = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
             case 0:
                 _a = req.body, firstName = _a.firstName, lastName = _a.lastName, email = _a.email, password = _a.password;
                 if (!(firstName && lastName && email && password))
-                    return [2 /*return*/, res.status(400).json({ message: 'All Input Field Required', success: false, data: {} })];
-                return [4 /*yield*/, prisma.user.findFirst({ where: { email: email } })];
+                    return [2 /*return*/, res
+                            .status(400)
+                            .json({ message: "All Input Field Required", success: false, data: {} })];
+                return [4 /*yield*/, prisma.user.findFirst({
+                        where: { email: email }
+                    })];
             case 1:
                 alreadyExists = _b.sent();
                 if (alreadyExists) {
-                    return [2 /*return*/, res.status(400).json({ message: 'User Already Register', success: false, data: {} })];
+                    return [2 /*return*/, res
+                            .status(400)
+                            .json({ message: "User Already Register", success: false, data: {} })];
                 }
                 return [4 /*yield*/, prisma.user.create({
                         data: {
@@ -68,7 +74,9 @@ var Register = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
                     lastname: users.lastName,
                     email: users.email
                 };
-                return [2 /*return*/, res.status(200).json({ message: 'Register Success', success: true, data: { payload: payload } })];
+                return [2 /*return*/, res
+                        .status(200)
+                        .json({ message: "Register Success", success: true, data: { payload: payload } })];
         }
     });
 }); };
@@ -80,18 +88,26 @@ var Login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
             case 0:
                 _a = req.body, email = _a.email, password = _a.password;
                 if (!(email && password))
-                    return [2 /*return*/, res.status(400).json({ message: 'All Input Field Required', success: false, data: {} })];
+                    return [2 /*return*/, res
+                            .status(400)
+                            .json({ message: "All Input Field Required", success: false, data: {} })];
                 return [4 /*yield*/, prisma.user.findFirst({ where: { email: email } })];
             case 1:
                 checkEmail = _b.sent();
                 if (!checkEmail) {
-                    return [2 /*return*/, res.status(200).json({ message: 'Wrong Email', success: false, data: {} })];
+                    return [2 /*return*/, res
+                            .status(200)
+                            .json({ message: "Wrong Email", success: false, data: {} })];
                 }
                 if (checkEmail.email === email && checkEmail.password === password) {
-                    return [2 /*return*/, res.status(200).json({ message: "Login Success", success: true, data: {} })];
+                    return [2 /*return*/, res
+                            .status(200)
+                            .json({ message: "Login Success", success: true, data: {} })];
                 }
                 else {
-                    return [2 /*return*/, res.status(400).json({ message: 'Please Check Credentials', success: false, data: {} })];
+                    return [2 /*return*/, res
+                            .status(400)
+                            .json({ message: "Please Check Credentials", success: false, data: {} })];
                 }
                 return [2 /*return*/];
         }

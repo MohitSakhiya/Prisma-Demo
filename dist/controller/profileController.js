@@ -46,8 +46,10 @@ var createProfile = function (req, res) { return __awaiter(void 0, void 0, void 
             case 0:
                 id = req.body.id;
                 console.log(id, "user");
-                if (!(id))
-                    return [2 /*return*/, res.status(400).json({ message: 'user ID Required', success: false, data: {} })];
+                if (!id)
+                    return [2 /*return*/, res
+                            .status(400)
+                            .json({ message: "user ID Required", success: false, data: {} })];
                 return [4 /*yield*/, prisma.profile.create({
                         data: {
                             userId: id
@@ -55,7 +57,9 @@ var createProfile = function (req, res) { return __awaiter(void 0, void 0, void 
                     })];
             case 1:
                 userProfile = _a.sent();
-                return [2 /*return*/, res.status(200).json({ message: 'Profile Created', success: true, data: { userProfile: userProfile } })];
+                return [2 /*return*/, res
+                        .status(200)
+                        .json({ message: "Profile Created", success: true, data: { userProfile: userProfile } })];
         }
     });
 }); };

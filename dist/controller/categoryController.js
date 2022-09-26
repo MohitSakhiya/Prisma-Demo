@@ -45,8 +45,10 @@ var addCategory = function (req, res) { return __awaiter(void 0, void 0, void 0,
         switch (_a.label) {
             case 0:
                 category_name = req.body.category_name;
-                if (!(category_name))
-                    return [2 /*return*/, res.status(400).json({ message: 'Category Name Required', success: false, data: {} })];
+                if (!category_name)
+                    return [2 /*return*/, res
+                            .status(400)
+                            .json({ message: "Category Name Required", success: false, data: {} })];
                 return [4 /*yield*/, prisma.category.create({
                         data: {
                             name: category_name
@@ -54,7 +56,11 @@ var addCategory = function (req, res) { return __awaiter(void 0, void 0, void 0,
                     })];
             case 1:
                 category = _a.sent();
-                return [2 /*return*/, res.status(200).json({ message: 'Category Add Successfully', success: true, data: { category: category } })];
+                return [2 /*return*/, res.status(200).json({
+                        message: "Category Add Successfully",
+                        success: true,
+                        data: { category: category }
+                    })];
         }
     });
 }); };

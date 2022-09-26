@@ -46,7 +46,9 @@ var createPost = function (req, res) { return __awaiter(void 0, void 0, void 0, 
             case 0:
                 _a = req.body, title = _a.title, content = _a.content, Id = _a.Id, assigned = _a.assigned;
                 if (!(title && content && Id))
-                    return [2 /*return*/, res.status(400).json({ message: 'ALl Field Required', success: false, data: {} })];
+                    return [2 /*return*/, res
+                            .status(400)
+                            .json({ message: "ALl Field Required", success: false, data: {} })];
                 return [4 /*yield*/, prisma.post.create({
                         data: {
                             title: title,
@@ -56,7 +58,9 @@ var createPost = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                     })];
             case 1:
                 posts = _b.sent();
-                return [2 /*return*/, res.status(200).json({ message: 'Post Created', success: true, data: { posts: posts } })];
+                return [2 /*return*/, res
+                        .status(200)
+                        .json({ message: "Post Created", success: true, data: { posts: posts } })];
         }
     });
 }); };

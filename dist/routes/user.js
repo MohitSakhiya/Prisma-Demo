@@ -9,11 +9,11 @@ var userController_1 = require("../controller/userController");
 var profileController_1 = require("../controller/profileController");
 var postController_1 = require("../controller/postController");
 var categoryController_1 = require("../controller/categoryController");
-routes.post('/register', userController_1.Register);
-routes.post('/login', userController_1.Login);
-routes.post('/createprofile', profileController_1.createProfile);
-routes.post('/createpost', postController_1.createPost);
-routes.post('/addcategory', categoryController_1.addCategory);
+routes.post("/register", userController_1.Register);
+routes.post("/login", userController_1.Login);
+routes.post("/createprofile", profileController_1.createProfile);
+routes.post("/createpost", postController_1.createPost);
+routes.post("/addcategory", categoryController_1.addCategory);
 // routes.post('/categoriesonposts', categoryOnPost);
 exports["default"] = routes;
 //# sourceMappingURL=user.js.map
