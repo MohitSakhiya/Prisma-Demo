@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.categoryOnPost = exports.addCategory = void 0;
+exports.addCategory = void 0;
 var client_1 = require("@prisma/client");
 var prisma = new client_1.PrismaClient();
 var addCategory = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -59,26 +59,16 @@ var addCategory = function (req, res) { return __awaiter(void 0, void 0, void 0,
     });
 }); };
 exports.addCategory = addCategory;
-var categoryOnPost = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, postId, categoryId, assignedBy, categoryOnPost;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _a = req.body, postId = _a.postId, categoryId = _a.categoryId, assignedBy = _a.assignedBy;
-                if (!(postId && categoryId && assignedBy))
-                    return [2 /*return*/, res.status(400).json({ message: 'All Field Required', success: false, data: {} })];
-                return [4 /*yield*/, prisma.categoriesOnPosts.create({
-                        data: {
-                            postId: postId,
-                            categoryId: categoryId,
-                            assignedBy: assignedBy
-                        }
-                    })];
-            case 1:
-                categoryOnPost = _b.sent();
-                return [2 /*return*/, res.status(200).json({ message: 'Category On Post Add', success: true, data: { categoryOnPost: categoryOnPost } })];
-        }
-    });
-}); };
-exports.categoryOnPost = categoryOnPost;
+// export const categoryOnPost = async (req: Request, res: Response) => {
+//     const { postId, categoryId, assignedBy } = req.body;
+//     if (!(postId && categoryId && assignedBy)) return res.status(400).json({ message: 'All Field Required', success: false, data: {} });
+//     const categoryOnPost = await prisma.categoriesOnPosts.create({
+//         data: {
+//             postId: postId,
+//             categoryId: categoryId,
+//             assignedBy: assignedBy
+//         }
+//     });
+//     return res.status(200).json({ message: 'Category On Post Add', success: true, data: { categoryOnPost } });
+// }
 //# sourceMappingURL=categoryController.js.map

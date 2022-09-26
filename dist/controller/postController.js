@@ -40,13 +40,13 @@ exports.createPost = void 0;
 var client_1 = require("@prisma/client");
 var prisma = new client_1.PrismaClient();
 var createPost = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, title, content, Id, posts;
+    var _a, title, content, Id, assigned, posts;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _a = req.body, title = _a.title, content = _a.content, Id = _a.Id;
+                _a = req.body, title = _a.title, content = _a.content, Id = _a.Id, assigned = _a.assigned;
                 if (!(title && content && Id))
-                    return [2 /*return*/, res.status(400).json({ message: 'user ID Required', success: false, data: {} })];
+                    return [2 /*return*/, res.status(400).json({ message: 'ALl Field Required', success: false, data: {} })];
                 return [4 /*yield*/, prisma.post.create({
                         data: {
                             title: title,

@@ -14,6 +14,6 @@ routes.post('/login', userController_1.Login);
 routes.post('/createprofile', profileController_1.createProfile);
 routes.post('/createpost', postController_1.createPost);
 routes.post('/addcategory', categoryController_1.addCategory);
-routes.post('/categoriesonposts', categoryController_1.categoryOnPost);
+// routes.post('/categoriesonposts', categoryOnPost);
 exports["default"] = routes;
 //# sourceMappingURL=user.js.map

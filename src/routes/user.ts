@@ -4,7 +4,7 @@ const routes = express.Router();
 import { Register, Login } from '../controller/userController'
 import { createProfile } from '../controller/profileController'
 import { createPost } from '../controller/postController'
-import { addCategory, categoryOnPost } from '../controller/categoryController'
+import { addCategory } from '../controller/categoryController'
 
 routes.post('/register', Register);
 
@@ -16,6 +16,6 @@ routes.post('/createpost', createPost);
 
 routes.post('/addcategory', addCategory);
 
-routes.post('/categoriesonposts', categoryOnPost);
+// routes.post('/categoriesonposts', categoryOnPost);
 
 export default routes;

@@ -29,33 +29,22 @@ model Profile {
   userId Int  @unique
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean? @default(false)
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  Int?
-  categories CategoriesOnPosts[]
-}
-
 model Category {
-  id    Int                 @id @default(autoincrement())
+  id    Int    @id @default(autoincrement())
   name  String
-  posts CategoriesOnPosts[]
+  posts Post[]
 }
 
-model CategoriesOnPosts {
-  post       Post     @relation(fields: [postId], references: [id])
-  postId     Int 
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId Int 
-  assignedAt DateTime @default(now())
-  assignedBy String
-
-  @@id([postId, categoryId])
+model Post {
+  id         Int        @id @default(autoincrement())
+  title      String
+  content    String?
+  published  Boolean?   @default(false)
+  author     User?      @relation(fields: [authorId], references: [id])
+  authorId   Int?
+  assignedAt DateTime   @default(now())
+  categories Category[]
 }
-
 
 enum UserRole {
   ADMIN

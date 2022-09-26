@@ -4,9 +4,9 @@ const prisma = new PrismaClient();
 
 
 export const createPost = async (req: any, res: any) => {
-    const { title, content, Id } = req.body;
+    const { title, content, Id, assigned } = req.body;
 
-    if (!(title && content && Id)) return res.status(400).json({ message: 'user ID Required', success: false, data: {} });
+    if (!(title && content && Id)) return res.status(400).json({ message: 'ALl Field Required', success: false, data: {} });
 
     const posts = await prisma.post.create({
         data: {
@@ -18,3 +18,5 @@ export const createPost = async (req: any, res: any) => {
 
     return res.status(200).json({ message: 'Post Created', success: true, data: { posts } });
 }
+
+
